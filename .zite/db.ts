@@ -61,6 +61,29 @@
 //   - Soft-deleted rows are excluded automatically — no WHERE deleted_at IS NULL
 //   - SELECT only — use .create/.update/.delete for writes
 //   - Load the "zite:sql" skill for full SQL reference (formulas, lookups, etc.)
+//
+// Link tables for zite.sql() JOINs (use these exact names):
+//   "ItemsSuppliers" — columns: "itemsId", "suppliersId" (joins "Items" and "Suppliers")
+//   "BomLinesItems" — columns: "bomLinesId", "itemsId" (joins "Bom Lines" and "Items")
+//   "CustomersDocuments" — columns: "customersId", "documentsId" (joins "Customers" and "Documents")
+//   "DocumentsSuppliers" — columns: "documentsId", "suppliersId" (joins "Documents" and "Suppliers")
+//   "DocumentsWarehouses" — columns: "documentsId", "warehousesId" (joins "Documents" and "Warehouses")
+//   "DocumentLinesDocuments" — columns: "documentLinesId", "documentsId" (joins "Document Lines" and "Documents")
+//   "DocumentLinesItems" — columns: "documentLinesId", "itemsId" (joins "Document Lines" and "Items")
+//   "ItemsProductionOrders" — columns: "itemsId", "productionOrdersId" (joins "Items" and "Production Orders")
+//   "ProductionOrdersWarehouses" — columns: "productionOrdersId", "warehousesId" (joins "Production Orders" and "Warehouses")
+//   "ProductionOrdersStageLogs" — columns: "productionOrdersId", "stageLogsId" (joins "Production Orders" and "Stage Logs")
+//   "ItemsStockMovements" — columns: "itemsId", "stockMovementsId" (joins "Items" and "Stock Movements")
+//   "StockMovementsWarehouses" — columns: "stockMovementsId", "warehousesId" (joins "Stock Movements" and "Warehouses")
+//   "FinanceAccountsTransactions" — columns: "financeAccountsId", "transactionsId" (joins "Finance Accounts" and "Transactions")
+//   "CustomersTransactions" — columns: "customersId", "transactionsId" (joins "Customers" and "Transactions")
+//   "SuppliersTransactions" — columns: "suppliersId", "transactionsId" (joins "Suppliers" and "Transactions")
+//   "EmployeesTransactions" — columns: "employeesId", "transactionsId" (joins "Employees" and "Transactions")
+//   "DocumentsTransactions" — columns: "documentsId", "transactionsId" (joins "Documents" and "Transactions")
+//   "AttendanceEmployees" — columns: "attendanceId", "employeesId" (joins "Attendance" and "Employees")
+//   "EmployeesLeaves" — columns: "employeesId", "leavesId" (joins "Employees" and "Leaves")
+//   "EmployeeAdjustmentsEmployees" — columns: "employeeAdjustmentsId", "employeesId" (joins "Employee Adjustments" and "Employees")
+//   "EmployeesPayslips" — columns: "employeesId", "payslipsId" (joins "Employees" and "Payslips")
 import { createTableClient, createSqlClient, createAuthClient } from 'zitejs/runtime';
 
 /** An attachment as returned when reading a record. */
@@ -85,6 +108,724 @@ export type ZiteAttachmentInput =
   | { url: string; filename?: string }
   | ZiteAttachment;
 
+/** A record in the "Warehouses" table, as it is read back. */
+export type WarehousesRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  location?: string;
+  notes?: string;
+  active?: boolean;
+  /** Links to documents ("Documents"). "Documents" */
+  documents?: string | string[];
+  /** Links to productionOrders ("Production Orders"). "Production Orders" */
+  productionOrders?: string | string[];
+  /** Links to productionOrders ("Production Orders"). "Production Orders (1)" */
+  productionOrders1?: string | string[];
+  /** Links to stockMovements ("Stock Movements"). "Stock Movements" */
+  stockMovements?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Warehouses" table. */
+export type WarehousesRecordInput = {
+  name: string | null;
+  location: string | null;
+  notes: string | null;
+  active: string | boolean | null;
+  documents: string | string[] | null;
+  productionOrders: string | string[] | null;
+  productionOrders1: string | string[] | null;
+  stockMovements: string | string[] | null;
+};
+
+/** A record in the "Suppliers" table, as it is read back. */
+export type SuppliersRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  taxNumber?: string;
+  /** "Opening Balance". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  openingBalance?: number;
+  notes?: string;
+  /** Links to items ("Items"). "Items" */
+  items?: string | string[];
+  /** Links to documents ("Documents"). "Documents" */
+  documents?: string | string[];
+  /** Links to transactions ("Transactions"). "Transactions" */
+  transactions?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Suppliers" table. */
+export type SuppliersRecordInput = {
+  name: string | null;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  taxNumber: string | null;
+  openingBalance: string | number | null;
+  notes: string | null;
+  items: string | string[] | null;
+  documents: string | string[] | null;
+  transactions: string | string[] | null;
+};
+
+/** A record in the "Customers" table, as it is read back. */
+export type CustomersRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  taxNumber?: string;
+  /** "Opening Balance". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  openingBalance?: number;
+  notes?: string;
+  /** Links to documents ("Documents"). "Documents" */
+  documents?: string | string[];
+  /** Links to transactions ("Transactions"). "Transactions" */
+  transactions?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Customers" table. */
+export type CustomersRecordInput = {
+  name: string | null;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  taxNumber: string | null;
+  openingBalance: string | number | null;
+  notes: string | null;
+  documents: string | string[] | null;
+  transactions: string | string[] | null;
+};
+
+/** A record in the "Items" table, as it is read back. */
+export type ItemsRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  code?: string;
+  itemType?: "product" | "material" | string;
+  category?: string;
+  productGroup?: string;
+  unit?: string;
+  size?: string;
+  color?: string;
+  material?: string;
+  /** "Sale Price". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  salePrice?: number;
+  /** "Unit Cost". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  unitCost?: number;
+  /** "Min Stock". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  minStock?: number;
+  image?: ZiteAttachment[];
+  description?: string;
+  /** Links to suppliers ("Suppliers"). "Supplier" */
+  supplier?: string | string[];
+  active?: boolean;
+  /** Links to bomLines ("Bom Lines"). "Bom Lines" */
+  bomLines?: string | string[];
+  /** Links to bomLines ("Bom Lines"). "Bom Lines (1)" */
+  bomLines1?: string | string[];
+  /** Links to documentLines ("Document Lines"). "Document Lines" */
+  documentLines?: string | string[];
+  /** Links to productionOrders ("Production Orders"). "Production Orders" */
+  productionOrders?: string | string[];
+  /** Links to stockMovements ("Stock Movements"). "Stock Movements" */
+  stockMovements?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Items" table. */
+export type ItemsRecordInput = {
+  name: string | null;
+  code: string | null;
+  itemType: "product" | "material" | string | null;
+  category: string | null;
+  productGroup: string | null;
+  unit: string | null;
+  size: string | null;
+  color: string | null;
+  material: string | null;
+  salePrice: string | number | null;
+  unitCost: string | number | null;
+  minStock: string | number | null;
+  image: ZiteAttachmentInput[] | ZiteAttachmentInput | null;
+  description: string | null;
+  supplier: string | string[] | null;
+  active: string | boolean | null;
+  bomLines: string | string[] | null;
+  bomLines1: string | string[] | null;
+  documentLines: string | string[] | null;
+  productionOrders: string | string[] | null;
+  stockMovements: string | string[] | null;
+};
+
+/** A record in the "Bom Lines" table, as it is read back. */
+export type BomLinesRecordType = {
+  id: string;
+  /** Primary field. "Label" */
+  label?: string;
+  /** Links to items ("Items"). "Product" */
+  product?: string | string[];
+  /** Links to items ("Items"). "Component" */
+  component?: string | string[];
+  /** "Quantity Per Unit". 4 decimal places, format: local (e.g. 1,000,000.50) */
+  quantityPerUnit?: number;
+  /** "Waste Percent". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  wastePercent?: number;
+};
+
+/** What you may write when creating or updating a record in the "Bom Lines" table. */
+export type BomLinesRecordInput = {
+  label: string | null;
+  product: string | string[] | null;
+  component: string | string[] | null;
+  quantityPerUnit: string | number | null;
+  wastePercent: string | number | null;
+};
+
+/** A record in the "Finance Accounts" table, as it is read back. */
+export type FinanceAccountsRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  accountType?: "cash" | "bank" | string;
+  /** "Opening Balance". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  openingBalance?: number;
+  accountNumber?: string;
+  /** Links to transactions ("Transactions"). "Transactions" */
+  transactions?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Finance Accounts" table. */
+export type FinanceAccountsRecordInput = {
+  name: string | null;
+  accountType: "cash" | "bank" | string | null;
+  openingBalance: string | number | null;
+  accountNumber: string | null;
+  transactions: string | string[] | null;
+};
+
+/** A record in the "Documents" table, as it is read back. */
+export type DocumentsRecordType = {
+  id: string;
+  /** Primary field. "Number" */
+  number?: string;
+  docType?: "purchase_order" | "purchase_invoice" | "purchase_return" | "quote" | "sales_order" | "sales_invoice" | "sales_return" | string;
+  /** "Doc Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  docDate?: string;
+  /** "Due Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  dueDate?: string;
+  /** Links to customers ("Customers"). "Customer" */
+  customer?: string | string[];
+  /** Links to suppliers ("Suppliers"). "Supplier" */
+  supplier?: string | string[];
+  /** Links to warehouses ("Warehouses"). "Warehouse" */
+  warehouse?: string | string[];
+  status?: string;
+  deliveryStatus?: string;
+  /** "Subtotal". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  subtotal?: number;
+  /** "Discount". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  discount?: number;
+  /** "Tax Percent". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  taxPercent?: number;
+  /** "Total". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  total?: number;
+  /** "Paid". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  paid?: number;
+  stockPosted?: boolean;
+  sourceNumber?: string;
+  notes?: string;
+  idempotencyKey?: string;
+  /** Links to documentLines ("Document Lines"). "Document Lines" */
+  documentLines?: string | string[];
+  /** Links to transactions ("Transactions"). "Transactions" */
+  transactions?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Documents" table. */
+export type DocumentsRecordInput = {
+  number: string | null;
+  docType: "purchase_order" | "purchase_invoice" | "purchase_return" | "quote" | "sales_order" | "sales_invoice" | "sales_return" | string | null;
+  docDate: string | Date | null;
+  dueDate: string | Date | null;
+  customer: string | string[] | null;
+  supplier: string | string[] | null;
+  warehouse: string | string[] | null;
+  status: string | null;
+  deliveryStatus: string | null;
+  subtotal: string | number | null;
+  discount: string | number | null;
+  taxPercent: string | number | null;
+  total: string | number | null;
+  paid: string | number | null;
+  stockPosted: string | boolean | null;
+  sourceNumber: string | null;
+  notes: string | null;
+  idempotencyKey: string | null;
+  documentLines: string | string[] | null;
+  transactions: string | string[] | null;
+};
+
+/** A record in the "Document Lines" table, as it is read back. */
+export type DocumentLinesRecordType = {
+  id: string;
+  /** Primary field. "Label" */
+  label?: string;
+  /** Links to documents ("Documents"). "Document" */
+  document?: string | string[];
+  /** Links to items ("Items"). "Item" */
+  item?: string | string[];
+  /** "Quantity". 3 decimal places, format: local (e.g. 1,000,000.50) */
+  quantity?: number;
+  /** "Unit Price". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  unitPrice?: number;
+  /** "Line Discount". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  lineDiscount?: number;
+  /** "Line Total". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  lineTotal?: number;
+};
+
+/** What you may write when creating or updating a record in the "Document Lines" table. */
+export type DocumentLinesRecordInput = {
+  label: string | null;
+  document: string | string[] | null;
+  item: string | string[] | null;
+  quantity: string | number | null;
+  unitPrice: string | number | null;
+  lineDiscount: string | number | null;
+  lineTotal: string | number | null;
+};
+
+/** A record in the "Production Orders" table, as it is read back. */
+export type ProductionOrdersRecordType = {
+  id: string;
+  /** Primary field. "Number" */
+  number?: string;
+  /** Links to items ("Items"). "Product" */
+  product?: string | string[];
+  /** "Quantity". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  quantity?: number;
+  /** Links to warehouses ("Warehouses"). "Material Warehouse" */
+  materialWarehouse?: string | string[];
+  /** Links to warehouses ("Warehouses"). "Output Warehouse" */
+  outputWarehouse?: string | string[];
+  status?: string;
+  currentStage?: string;
+  /** "Start Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  startDate?: string;
+  /** "Due Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  dueDate?: string;
+  /** "End Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  endDate?: string;
+  /** "Completed Qty". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  completedQty?: number;
+  /** "Rejected Qty". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  rejectedQty?: number;
+  /** "Rework Qty". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  reworkQty?: number;
+  /** "Waste Qty". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  wasteQty?: number;
+  /** "Material Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  materialCost?: number;
+  /** "Labor Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  laborCost?: number;
+  /** "Overhead Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  overheadCost?: number;
+  /** "Direct Expenses". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  directExpenses?: number;
+  /** "Indirect Expenses". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  indirectExpenses?: number;
+  /** "Total Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  totalCost?: number;
+  /** "Unit Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  unitCost?: number;
+  materialsIssued?: boolean;
+  qualityNotes?: string;
+  notes?: string;
+  /** Links to stageLogs ("Stage Logs"). "Stage Logs" */
+  stageLogs?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Production Orders" table. */
+export type ProductionOrdersRecordInput = {
+  number: string | null;
+  product: string | string[] | null;
+  quantity: string | number | null;
+  materialWarehouse: string | string[] | null;
+  outputWarehouse: string | string[] | null;
+  status: string | null;
+  currentStage: string | null;
+  startDate: string | Date | null;
+  dueDate: string | Date | null;
+  endDate: string | Date | null;
+  completedQty: string | number | null;
+  rejectedQty: string | number | null;
+  reworkQty: string | number | null;
+  wasteQty: string | number | null;
+  materialCost: string | number | null;
+  laborCost: string | number | null;
+  overheadCost: string | number | null;
+  directExpenses: string | number | null;
+  indirectExpenses: string | number | null;
+  totalCost: string | number | null;
+  unitCost: string | number | null;
+  materialsIssued: string | boolean | null;
+  qualityNotes: string | null;
+  notes: string | null;
+  stageLogs: string | string[] | null;
+};
+
+/** A record in the "Production Stages" table, as it is read back. */
+export type ProductionStagesRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  /** "Sort Order". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  sortOrder?: number;
+};
+
+/** What you may write when creating or updating a record in the "Production Stages" table. */
+export type ProductionStagesRecordInput = {
+  name: string | null;
+  sortOrder: string | number | null;
+};
+
+/** A record in the "Stage Logs" table, as it is read back. */
+export type StageLogsRecordType = {
+  id: string;
+  /** Primary field. "Stage Name" */
+  stageName?: string;
+  /** Links to productionOrders ("Production Orders"). "Order" */
+  order?: string | string[];
+  /** "Qty Done". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  qtyDone?: number;
+  /** "Qty Waste". 1 decimal places, format: local (e.g. 1,000,000.50) */
+  qtyWaste?: number;
+  notes?: string;
+  /** Read-only. "Logged By" */
+  loggedBy?: string;
+  /** Read-only. "Logged At". Auto-set when record was created (ISO 8601) */
+  loggedAt?: string;
+};
+
+/** What you may write when creating or updating a record in the "Stage Logs" table. */
+export type StageLogsRecordInput = {
+  stageName: string | null;
+  order: string | string[] | null;
+  qtyDone: string | number | null;
+  qtyWaste: string | number | null;
+  notes: string | null;
+};
+
+/** A record in the "Stock Movements" table, as it is read back. */
+export type StockMovementsRecordType = {
+  id: string;
+  /** Primary field. "Reference" */
+  reference?: string;
+  /** "Movement Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  movementDate?: string;
+  /** Links to items ("Items"). "Item" */
+  item?: string | string[];
+  /** Links to warehouses ("Warehouses"). "Warehouse" */
+  warehouse?: string | string[];
+  movementType?: string;
+  /** "Qty In". 3 decimal places, format: local (e.g. 1,000,000.50) */
+  qtyIn?: number;
+  /** "Qty Out". 3 decimal places, format: local (e.g. 1,000,000.50) */
+  qtyOut?: number;
+  /** "Unit Cost". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  unitCost?: number;
+  sourceId?: string;
+  notes?: string;
+  idempotencyKey?: string;
+  /** Read-only. "Created By" */
+  createdBy?: string;
+  /** Read-only. "Created At". Auto-set when record was created (ISO 8601) */
+  createdAt?: string;
+};
+
+/** What you may write when creating or updating a record in the "Stock Movements" table. */
+export type StockMovementsRecordInput = {
+  reference: string | null;
+  movementDate: string | Date | null;
+  item: string | string[] | null;
+  warehouse: string | string[] | null;
+  movementType: string | null;
+  qtyIn: string | number | null;
+  qtyOut: string | number | null;
+  unitCost: string | number | null;
+  sourceId: string | null;
+  notes: string | null;
+  idempotencyKey: string | null;
+};
+
+/** A record in the "Employees" table, as it is read back. */
+export type EmployeesRecordType = {
+  id: string;
+  /** Primary field. "Name" */
+  name?: string;
+  jobTitle?: string;
+  department?: string;
+  phone?: string;
+  /** "Base Salary". Value is a raw number; display as currency with symbol "EGP", 2 decimal places, format: local (e.g. 1,000,000.50) */
+  baseSalary?: number;
+  /** "Hire Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  hireDate?: string;
+  active?: boolean;
+  notes?: string;
+  /** Links to transactions ("Transactions"). "Transactions" */
+  transactions?: string | string[];
+  /** Links to attendance ("Attendance"). "Attendance" */
+  attendance?: string | string[];
+  /** Links to leaves ("Leaves"). "Leaves" */
+  leaves?: string | string[];
+  /** Links to employeeAdjustments ("Employee Adjustments"). "Employee Adjustments" */
+  employeeAdjustments?: string | string[];
+  /** Links to payslips ("Payslips"). "Payslips" */
+  payslips?: string | string[];
+};
+
+/** What you may write when creating or updating a record in the "Employees" table. */
+export type EmployeesRecordInput = {
+  name: string | null;
+  jobTitle: string | null;
+  department: string | null;
+  phone: string | null;
+  baseSalary: string | number | null;
+  hireDate: string | Date | null;
+  active: string | boolean | null;
+  notes: string | null;
+  transactions: string | string[] | null;
+  attendance: string | string[] | null;
+  leaves: string | string[] | null;
+  employeeAdjustments: string | string[] | null;
+  payslips: string | string[] | null;
+};
+
+/** A record in the "Transactions" table, as it is read back. */
+export type TransactionsRecordType = {
+  id: string;
+  /** Primary field. "Reference" */
+  reference?: string;
+  /** "Tx Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  txDate?: string;
+  direction?: "in" | "out" | string;
+  /** "Amount". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  amount?: number;
+  category?: string;
+  /** Links to financeAccounts ("Finance Accounts"). "Account" */
+  account?: string | string[];
+  /** Links to customers ("Customers"). "Customer" */
+  customer?: string | string[];
+  /** Links to suppliers ("Suppliers"). "Supplier" */
+  supplier?: string | string[];
+  /** Links to employees ("Employees"). "Employee" */
+  employee?: string | string[];
+  /** Links to documents ("Documents"). "Document" */
+  document?: string | string[];
+  notes?: string;
+  idempotencyKey?: string;
+  /** Read-only. "Created By" */
+  createdBy?: string;
+  /** Read-only. "Created At". Auto-set when record was created (ISO 8601) */
+  createdAt?: string;
+};
+
+/** What you may write when creating or updating a record in the "Transactions" table. */
+export type TransactionsRecordInput = {
+  reference: string | null;
+  txDate: string | Date | null;
+  direction: "in" | "out" | string | null;
+  amount: string | number | null;
+  category: string | null;
+  account: string | string[] | null;
+  customer: string | string[] | null;
+  supplier: string | string[] | null;
+  employee: string | string[] | null;
+  document: string | string[] | null;
+  notes: string | null;
+  idempotencyKey: string | null;
+};
+
+/** A record in the "Attendance" table, as it is read back. */
+export type AttendanceRecordType = {
+  id: string;
+  /** Primary field. "Day". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  day?: string;
+  /** Links to employees ("Employees"). "Employee" */
+  employee?: string | string[];
+  status?: "present" | "absent" | "late" | "leave" | string;
+  checkIn?: string;
+  checkOut?: string;
+  notes?: string;
+};
+
+/** What you may write when creating or updating a record in the "Attendance" table. */
+export type AttendanceRecordInput = {
+  day: string | Date | null;
+  employee: string | string[] | null;
+  status: "present" | "absent" | "late" | "leave" | string | null;
+  checkIn: string | null;
+  checkOut: string | null;
+  notes: string | null;
+};
+
+/** A record in the "Leaves" table, as it is read back. */
+export type LeavesRecordType = {
+  id: string;
+  /** Primary field. "Leave Type" */
+  leaveType?: string;
+  /** Links to employees ("Employees"). "Employee" */
+  employee?: string | string[];
+  /** "From Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  fromDate?: string;
+  /** "To Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  toDate?: string;
+  status?: "pending" | "approved" | "rejected" | string;
+  notes?: string;
+};
+
+/** What you may write when creating or updating a record in the "Leaves" table. */
+export type LeavesRecordInput = {
+  leaveType: string | null;
+  employee: string | string[] | null;
+  fromDate: string | Date | null;
+  toDate: string | Date | null;
+  status: "pending" | "approved" | "rejected" | string | null;
+  notes: string | null;
+};
+
+/** A record in the "Employee Adjustments" table, as it is read back. */
+export type EmployeeAdjustmentsRecordType = {
+  id: string;
+  /** Primary field. "Description" */
+  description?: string;
+  /** Links to employees ("Employees"). "Employee" */
+  employee?: string | string[];
+  adjustmentType?: "bonus" | "deduction" | "advance" | string;
+  /** "Amount". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  amount?: number;
+  month?: string;
+  /** "Adj Date". Date-only field (YYYY-MM-DD string), null when unset, display as "local" format */
+  adjDate?: string;
+};
+
+/** What you may write when creating or updating a record in the "Employee Adjustments" table. */
+export type EmployeeAdjustmentsRecordInput = {
+  description: string | null;
+  employee: string | string[] | null;
+  adjustmentType: "bonus" | "deduction" | "advance" | string | null;
+  amount: string | number | null;
+  month: string | null;
+  adjDate: string | Date | null;
+};
+
+/** A record in the "Payslips" table, as it is read back. */
+export type PayslipsRecordType = {
+  id: string;
+  /** Primary field. "Month" */
+  month?: string;
+  /** Links to employees ("Employees"). "Employee" */
+  employee?: string | string[];
+  /** "Base". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  base?: number;
+  /** "Bonuses". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  bonuses?: number;
+  /** "Deductions". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  deductions?: number;
+  /** "Advances". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  advances?: number;
+  /** "Net". 2 decimal places, format: local (e.g. 1,000,000.50) */
+  net?: number;
+  paid?: boolean;
+};
+
+/** What you may write when creating or updating a record in the "Payslips" table. */
+export type PayslipsRecordInput = {
+  month: string | null;
+  employee: string | string[] | null;
+  base: string | number | null;
+  bonuses: string | number | null;
+  deductions: string | number | null;
+  advances: string | number | null;
+  net: string | number | null;
+  paid: string | boolean | null;
+};
+
+/** A record in the "App Users" table, as it is read back. */
+export type AppUsersRecordType = {
+  id: string;
+  /** Primary field. "Display Name" */
+  displayName?: string;
+  user?: string | string[];
+  role?: "admin" | "employee" | string;
+  permissions?: ("products" | "inventory" | "purchases" | "sales" | "production" | "hr" | "finance" | "reports" | string)[];
+  active?: boolean;
+};
+
+/** What you may write when creating or updating a record in the "App Users" table. */
+export type AppUsersRecordInput = {
+  displayName: string | null;
+  user: string | string[] | null;
+  role: "admin" | "employee" | string | null;
+  permissions: "products" | "inventory" | "purchases" | "sales" | "production" | "hr" | "finance" | "reports" | string | ("products" | "inventory" | "purchases" | "sales" | "production" | "hr" | "finance" | "reports" | string)[] | null;
+  active: string | boolean | null;
+};
+
+/** A record in the "Notifications" table, as it is read back. */
+export type NotificationsRecordType = {
+  id: string;
+  /** Primary field. "Title" */
+  title?: string;
+  body?: string;
+  kind?: string;
+  link?: string;
+  isRead?: boolean;
+  /** Read-only. "Created At". Auto-set when record was created (ISO 8601) */
+  createdAt?: string;
+};
+
+/** What you may write when creating or updating a record in the "Notifications" table. */
+export type NotificationsRecordInput = {
+  title: string | null;
+  body: string | null;
+  kind: string | null;
+  link: string | null;
+  isRead: string | boolean | null;
+};
+
+/** A record in the "Audit Logs" table, as it is read back. */
+export type AuditLogsRecordType = {
+  id: string;
+  /** Primary field. "Action" */
+  action?: string;
+  module?: string;
+  recordId?: string;
+  description?: string;
+  beforeData?: string;
+  afterData?: string;
+  actor?: string | string[];
+  /** Read-only. "Created At". Auto-set when record was created (ISO 8601) */
+  createdAt?: string;
+};
+
+/** What you may write when creating or updating a record in the "Audit Logs" table. */
+export type AuditLogsRecordInput = {
+  action: string | null;
+  module: string | null;
+  recordId: string | null;
+  description: string | null;
+  beforeData: string | null;
+  afterData: string | null;
+  actor: string | string[] | null;
+};
+
 export interface ZiteAuthUser {
   id: string;
   name: string;
@@ -95,6 +836,27 @@ export interface ZiteAuthUser {
 }
 
 export const zite = {
+  warehouses: createTableClient<WarehousesRecordType, WarehousesRecordInput>('Warehouses'), // "Warehouses"
+  suppliers: createTableClient<SuppliersRecordType, SuppliersRecordInput>('Suppliers'), // "Suppliers"
+  customers: createTableClient<CustomersRecordType, CustomersRecordInput>('Customers'), // "Customers"
+  items: createTableClient<ItemsRecordType, ItemsRecordInput>('Items'), // "Items"
+  bomLines: createTableClient<BomLinesRecordType, BomLinesRecordInput>('BomLines'), // "Bom Lines"
+  financeAccounts: createTableClient<FinanceAccountsRecordType, FinanceAccountsRecordInput>('FinanceAccounts'), // "Finance Accounts"
+  documents: createTableClient<DocumentsRecordType, DocumentsRecordInput>('Documents'), // "Documents"
+  documentLines: createTableClient<DocumentLinesRecordType, DocumentLinesRecordInput>('DocumentLines'), // "Document Lines"
+  productionOrders: createTableClient<ProductionOrdersRecordType, ProductionOrdersRecordInput>('ProductionOrders'), // "Production Orders"
+  productionStages: createTableClient<ProductionStagesRecordType, ProductionStagesRecordInput>('ProductionStages'), // "Production Stages"
+  stageLogs: createTableClient<StageLogsRecordType, StageLogsRecordInput>('StageLogs'), // "Stage Logs"
+  stockMovements: createTableClient<StockMovementsRecordType, StockMovementsRecordInput>('StockMovements'), // "Stock Movements"
+  employees: createTableClient<EmployeesRecordType, EmployeesRecordInput>('Employees'), // "Employees"
+  transactions: createTableClient<TransactionsRecordType, TransactionsRecordInput>('Transactions'), // "Transactions"
+  attendance: createTableClient<AttendanceRecordType, AttendanceRecordInput>('Attendance'), // "Attendance"
+  leaves: createTableClient<LeavesRecordType, LeavesRecordInput>('Leaves'), // "Leaves"
+  employeeAdjustments: createTableClient<EmployeeAdjustmentsRecordType, EmployeeAdjustmentsRecordInput>('EmployeeAdjustments'), // "Employee Adjustments"
+  payslips: createTableClient<PayslipsRecordType, PayslipsRecordInput>('Payslips'), // "Payslips"
+  appUsers: createTableClient<AppUsersRecordType, AppUsersRecordInput>('AppUsers'), // "App Users"
+  notifications: createTableClient<NotificationsRecordType, NotificationsRecordInput>('Notifications'), // "Notifications"
+  auditLogs: createTableClient<AuditLogsRecordType, AuditLogsRecordInput>('AuditLogs'), // "Audit Logs"
   sql: createSqlClient(),
   auth: createAuthClient<ZiteAuthUser>(),
 };

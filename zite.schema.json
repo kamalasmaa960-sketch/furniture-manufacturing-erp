@@ -1,3 +1,2639 @@
 {
-  "tables": []
+  "tables": [
+    {
+      "id": "twEtHWSuqLR",
+      "sdkName": "warehouses",
+      "name": "Warehouses",
+      "primaryFieldId": "f683cnn3DtR",
+      "fields": [
+        {
+          "id": "f683cnn3DtR",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "foX6ZTiMjku",
+          "sdkName": "location",
+          "definition": {
+            "name": "Location",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fapDGeScH9z",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fwdsrFerCWx",
+          "sdkName": "active",
+          "definition": {
+            "name": "Active",
+            "type": "checkbox",
+            "template": {
+              "defaultValue": true
+            }
+          }
+        },
+        {
+          "id": "f3eG35un94c",
+          "sdkName": "documents",
+          "definition": {
+            "name": "Documents",
+            "type": "linked_record",
+            "template": {
+              "tableId": "thLVnLZ3cLy",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f8mMKM7iJZQ"
+            }
+          }
+        },
+        {
+          "id": "ftAMm2pp5E9",
+          "sdkName": "productionOrders",
+          "definition": {
+            "name": "Production Orders",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tvGvGgMZGVf",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fo59TboEEka"
+            }
+          }
+        },
+        {
+          "id": "fgzQnRmcjJn",
+          "sdkName": "productionOrders1",
+          "definition": {
+            "name": "Production Orders (1)",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tvGvGgMZGVf",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fpinXZB4vBJ"
+            }
+          }
+        },
+        {
+          "id": "fmWYjHQhJRA",
+          "sdkName": "stockMovements",
+          "definition": {
+            "name": "Stock Movements",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tnJDt9MZ1z3",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "ft8rK9J9QzU"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3QrCqjWo9C",
+      "sdkName": "suppliers",
+      "name": "Suppliers",
+      "primaryFieldId": "fjwpbV4oAm1",
+      "fields": [
+        {
+          "id": "fjwpbV4oAm1",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fxxde7egjnE",
+          "sdkName": "phone",
+          "definition": {
+            "name": "Phone",
+            "type": "phone_number",
+            "template": {}
+          }
+        },
+        {
+          "id": "fmeyxu7cG3X",
+          "sdkName": "email",
+          "definition": {
+            "name": "Email",
+            "type": "email",
+            "template": {}
+          }
+        },
+        {
+          "id": "f7QuEqCPvnC",
+          "sdkName": "address",
+          "definition": {
+            "name": "Address",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f32zgrsqdAy",
+          "sdkName": "taxNumber",
+          "definition": {
+            "name": "Tax Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f1nW3PUaA7w",
+          "sdkName": "openingBalance",
+          "definition": {
+            "name": "Opening Balance",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "fqpcpQubKHq",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f6n7dbHsDH2",
+          "sdkName": "items",
+          "definition": {
+            "name": "Items",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fhCtPKEek8f"
+            }
+          }
+        },
+        {
+          "id": "f3jhsrmt75C",
+          "sdkName": "documents",
+          "definition": {
+            "name": "Documents",
+            "type": "linked_record",
+            "template": {
+              "tableId": "thLVnLZ3cLy",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fcXG4FWZqkK"
+            }
+          }
+        },
+        {
+          "id": "f5X3e7jVJzF",
+          "sdkName": "transactions",
+          "definition": {
+            "name": "Transactions",
+            "type": "linked_record",
+            "template": {
+              "tableId": "teBrdim9uL8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "frDcFFJhfdd"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tfnCJQroMRn",
+      "sdkName": "customers",
+      "name": "Customers",
+      "primaryFieldId": "ffja9GNhkcm",
+      "fields": [
+        {
+          "id": "ffja9GNhkcm",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fnJvUBwmgx3",
+          "sdkName": "phone",
+          "definition": {
+            "name": "Phone",
+            "type": "phone_number",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvu1yxRhC2X",
+          "sdkName": "email",
+          "definition": {
+            "name": "Email",
+            "type": "email",
+            "template": {}
+          }
+        },
+        {
+          "id": "ftd8MoXT2Hj",
+          "sdkName": "address",
+          "definition": {
+            "name": "Address",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f4qGrPGW15x",
+          "sdkName": "taxNumber",
+          "definition": {
+            "name": "Tax Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fpJdc9ek9zg",
+          "sdkName": "openingBalance",
+          "definition": {
+            "name": "Opening Balance",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "frMi8CMaRMe",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f8wMCozhdD5",
+          "sdkName": "documents",
+          "definition": {
+            "name": "Documents",
+            "type": "linked_record",
+            "template": {
+              "tableId": "thLVnLZ3cLy",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fv5fVBVXjSc"
+            }
+          }
+        },
+        {
+          "id": "f39yGrJstcd",
+          "sdkName": "transactions",
+          "definition": {
+            "name": "Transactions",
+            "type": "linked_record",
+            "template": {
+              "tableId": "teBrdim9uL8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f5qbEXZ8DTQ"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "toyjNSQwqpM",
+      "sdkName": "items",
+      "name": "Items",
+      "primaryFieldId": "f25UQGiN45a",
+      "fields": [
+        {
+          "id": "f25UQGiN45a",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fdXvouQTFM6",
+          "sdkName": "code",
+          "definition": {
+            "name": "Code",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fpg7GsqyNG4",
+          "sdkName": "itemType",
+          "definition": {
+            "name": "Item Type",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "4y7K",
+                  "label": "product",
+                  "color": "purple"
+                },
+                {
+                  "value": "auSv",
+                  "label": "material",
+                  "color": "orange"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fuMmur9sSra",
+          "sdkName": "category",
+          "definition": {
+            "name": "Category",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fgRWbgDiCKP",
+          "sdkName": "productGroup",
+          "definition": {
+            "name": "Product Group",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fsdGPTt78km",
+          "sdkName": "unit",
+          "definition": {
+            "name": "Unit",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fwvn8bYSpk9",
+          "sdkName": "size",
+          "definition": {
+            "name": "Size",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "faoaFfH2G5o",
+          "sdkName": "color",
+          "definition": {
+            "name": "Color",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "faLQZNZC8Sa",
+          "sdkName": "material",
+          "definition": {
+            "name": "Material",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f71YocrC3XQ",
+          "sdkName": "salePrice",
+          "definition": {
+            "name": "Sale Price",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "fqGhwyTF2sp",
+          "sdkName": "unitCost",
+          "definition": {
+            "name": "Unit Cost",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "fhZ4ruk5kKX",
+          "sdkName": "minStock",
+          "definition": {
+            "name": "Min Stock",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fgUN77raFpx",
+          "sdkName": "image",
+          "definition": {
+            "name": "Image",
+            "type": "attachments",
+            "template": {}
+          }
+        },
+        {
+          "id": "fstB2hdg61R",
+          "sdkName": "description",
+          "definition": {
+            "name": "Description",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fhCtPKEek8f",
+          "sdkName": "supplier",
+          "definition": {
+            "name": "Supplier",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t3QrCqjWo9C",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f6n7dbHsDH2"
+            }
+          }
+        },
+        {
+          "id": "fvY5LhokBDQ",
+          "sdkName": "active",
+          "definition": {
+            "name": "Active",
+            "type": "checkbox",
+            "template": {
+              "defaultValue": true
+            }
+          }
+        },
+        {
+          "id": "feHRTqVvB19",
+          "sdkName": "bomLines",
+          "definition": {
+            "name": "Bom Lines",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t2N8kzMW1yB",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f2t9R3pRpBg"
+            }
+          }
+        },
+        {
+          "id": "f8NumAktxrD",
+          "sdkName": "bomLines1",
+          "definition": {
+            "name": "Bom Lines (1)",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t2N8kzMW1yB",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fn1e5q5NTpG"
+            }
+          }
+        },
+        {
+          "id": "fpqfcnAMnsx",
+          "sdkName": "documentLines",
+          "definition": {
+            "name": "Document Lines",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tniwQXGLx2a",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fk1rPV42s4K"
+            }
+          }
+        },
+        {
+          "id": "fdnrtagxTXY",
+          "sdkName": "productionOrders",
+          "definition": {
+            "name": "Production Orders",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tvGvGgMZGVf",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fk3QJn6aFNH"
+            }
+          }
+        },
+        {
+          "id": "fsGh29JrWwi",
+          "sdkName": "stockMovements",
+          "definition": {
+            "name": "Stock Movements",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tnJDt9MZ1z3",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f311h7nqAN6"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t2N8kzMW1yB",
+      "sdkName": "bomLines",
+      "name": "Bom Lines",
+      "primaryFieldId": "f8xzn1hV4dL",
+      "fields": [
+        {
+          "id": "f8xzn1hV4dL",
+          "sdkName": "label",
+          "definition": {
+            "name": "Label",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f2t9R3pRpBg",
+          "sdkName": "product",
+          "definition": {
+            "name": "Product",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "feHRTqVvB19"
+            }
+          }
+        },
+        {
+          "id": "fn1e5q5NTpG",
+          "sdkName": "component",
+          "definition": {
+            "name": "Component",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f8NumAktxrD"
+            }
+          }
+        },
+        {
+          "id": "f56NoWcYWgh",
+          "sdkName": "quantityPerUnit",
+          "definition": {
+            "name": "Quantity Per Unit",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 4
+            }
+          }
+        },
+        {
+          "id": "f46Ej3VcZ9q",
+          "sdkName": "wastePercent",
+          "definition": {
+            "name": "Waste Percent",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tq8AYWtBnco",
+      "sdkName": "financeAccounts",
+      "name": "Finance Accounts",
+      "primaryFieldId": "f9mv9cVRewD",
+      "fields": [
+        {
+          "id": "f9mv9cVRewD",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f4trnbGDQDZ",
+          "sdkName": "accountType",
+          "definition": {
+            "name": "Account Type",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "iLcZ",
+                  "label": "cash",
+                  "color": "purple"
+                },
+                {
+                  "value": "7JiH",
+                  "label": "bank",
+                  "color": "orange"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fcfJvEfPTCv",
+          "sdkName": "openingBalance",
+          "definition": {
+            "name": "Opening Balance",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "fbjigM6e7Ur",
+          "sdkName": "accountNumber",
+          "definition": {
+            "name": "Account Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "ffBb25AVLBo",
+          "sdkName": "transactions",
+          "definition": {
+            "name": "Transactions",
+            "type": "linked_record",
+            "template": {
+              "tableId": "teBrdim9uL8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fqcATpk4tgj"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "thLVnLZ3cLy",
+      "sdkName": "documents",
+      "name": "Documents",
+      "primaryFieldId": "fuJhYPtWYTH",
+      "fields": [
+        {
+          "id": "fuJhYPtWYTH",
+          "sdkName": "number",
+          "definition": {
+            "name": "Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f4d6Psmtw6j",
+          "sdkName": "docType",
+          "definition": {
+            "name": "Doc Type",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "r2XK",
+                  "label": "purchase_order",
+                  "color": "purple"
+                },
+                {
+                  "value": "7Wnx",
+                  "label": "purchase_invoice",
+                  "color": "orange"
+                },
+                {
+                  "value": "iKZe",
+                  "label": "purchase_return",
+                  "color": "blue"
+                },
+                {
+                  "value": "f1g6",
+                  "label": "quote",
+                  "color": "gray"
+                },
+                {
+                  "value": "uXBk",
+                  "label": "sales_order",
+                  "color": "red"
+                },
+                {
+                  "value": "hMc5",
+                  "label": "sales_invoice",
+                  "color": "yellow"
+                },
+                {
+                  "value": "cSHX",
+                  "label": "sales_return",
+                  "color": "green"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fj37qPcy8xs",
+          "sdkName": "docDate",
+          "definition": {
+            "name": "Doc Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "f5WmHVBUCmL",
+          "sdkName": "dueDate",
+          "definition": {
+            "name": "Due Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fv5fVBVXjSc",
+          "sdkName": "customer",
+          "definition": {
+            "name": "Customer",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tfnCJQroMRn",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f8wMCozhdD5"
+            }
+          }
+        },
+        {
+          "id": "fcXG4FWZqkK",
+          "sdkName": "supplier",
+          "definition": {
+            "name": "Supplier",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t3QrCqjWo9C",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f3jhsrmt75C"
+            }
+          }
+        },
+        {
+          "id": "f8mMKM7iJZQ",
+          "sdkName": "warehouse",
+          "definition": {
+            "name": "Warehouse",
+            "type": "linked_record",
+            "template": {
+              "tableId": "twEtHWSuqLR",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f3eG35un94c"
+            }
+          }
+        },
+        {
+          "id": "f375eK6ULvD",
+          "sdkName": "status",
+          "definition": {
+            "name": "Status",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fqaksSm2TvH",
+          "sdkName": "deliveryStatus",
+          "definition": {
+            "name": "Delivery Status",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fm26jQ4geY2",
+          "sdkName": "subtotal",
+          "definition": {
+            "name": "Subtotal",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fjE5vqouuGo",
+          "sdkName": "discount",
+          "definition": {
+            "name": "Discount",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "f2TfXxqLiQB",
+          "sdkName": "taxPercent",
+          "definition": {
+            "name": "Tax Percent",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fbvLA8iubzu",
+          "sdkName": "total",
+          "definition": {
+            "name": "Total",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fiuPQvntwQZ",
+          "sdkName": "paid",
+          "definition": {
+            "name": "Paid",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "f2W11yVqHxt",
+          "sdkName": "stockPosted",
+          "definition": {
+            "name": "Stock Posted",
+            "type": "checkbox",
+            "template": {}
+          }
+        },
+        {
+          "id": "fi7q9sk3adq",
+          "sdkName": "sourceNumber",
+          "definition": {
+            "name": "Source Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fpuyLtTwVmX",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvPHmSvCVMW",
+          "sdkName": "idempotencyKey",
+          "definition": {
+            "name": "Idempotency Key",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f3Gz4XyumLi",
+          "sdkName": "documentLines",
+          "definition": {
+            "name": "Document Lines",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tniwQXGLx2a",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "frvmgG7FLdw"
+            }
+          }
+        },
+        {
+          "id": "fd2N1yDdJ6x",
+          "sdkName": "transactions",
+          "definition": {
+            "name": "Transactions",
+            "type": "linked_record",
+            "template": {
+              "tableId": "teBrdim9uL8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fuKwwFxtRFa"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tniwQXGLx2a",
+      "sdkName": "documentLines",
+      "name": "Document Lines",
+      "primaryFieldId": "fxdgXQ7C1A7",
+      "fields": [
+        {
+          "id": "fxdgXQ7C1A7",
+          "sdkName": "label",
+          "definition": {
+            "name": "Label",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "frvmgG7FLdw",
+          "sdkName": "document",
+          "definition": {
+            "name": "Document",
+            "type": "linked_record",
+            "template": {
+              "tableId": "thLVnLZ3cLy",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f3Gz4XyumLi"
+            }
+          }
+        },
+        {
+          "id": "fk1rPV42s4K",
+          "sdkName": "item",
+          "definition": {
+            "name": "Item",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fpqfcnAMnsx"
+            }
+          }
+        },
+        {
+          "id": "fok5ARnoyta",
+          "sdkName": "quantity",
+          "definition": {
+            "name": "Quantity",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 3
+            }
+          }
+        },
+        {
+          "id": "fjwwN1cFnC1",
+          "sdkName": "unitPrice",
+          "definition": {
+            "name": "Unit Price",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fhtxQMH24L4",
+          "sdkName": "lineDiscount",
+          "definition": {
+            "name": "Line Discount",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fbUdcjS61F4",
+          "sdkName": "lineTotal",
+          "definition": {
+            "name": "Line Total",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tvGvGgMZGVf",
+      "sdkName": "productionOrders",
+      "name": "Production Orders",
+      "primaryFieldId": "fqXJK3UZdPY",
+      "fields": [
+        {
+          "id": "fqXJK3UZdPY",
+          "sdkName": "number",
+          "definition": {
+            "name": "Number",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fk3QJn6aFNH",
+          "sdkName": "product",
+          "definition": {
+            "name": "Product",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fdnrtagxTXY"
+            }
+          }
+        },
+        {
+          "id": "fooRoCwnwku",
+          "sdkName": "quantity",
+          "definition": {
+            "name": "Quantity",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fo59TboEEka",
+          "sdkName": "materialWarehouse",
+          "definition": {
+            "name": "Material Warehouse",
+            "type": "linked_record",
+            "template": {
+              "tableId": "twEtHWSuqLR",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "ftAMm2pp5E9"
+            }
+          }
+        },
+        {
+          "id": "fpinXZB4vBJ",
+          "sdkName": "outputWarehouse",
+          "definition": {
+            "name": "Output Warehouse",
+            "type": "linked_record",
+            "template": {
+              "tableId": "twEtHWSuqLR",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fgzQnRmcjJn"
+            }
+          }
+        },
+        {
+          "id": "fd3NMihvBcj",
+          "sdkName": "status",
+          "definition": {
+            "name": "Status",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fiksFwgq7DK",
+          "sdkName": "currentStage",
+          "definition": {
+            "name": "Current Stage",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fj1h7zqy4b7",
+          "sdkName": "startDate",
+          "definition": {
+            "name": "Start Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fqZKpjBSwNF",
+          "sdkName": "dueDate",
+          "definition": {
+            "name": "Due Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "f2X9FDEJXeF",
+          "sdkName": "endDate",
+          "definition": {
+            "name": "End Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fooGkx2NM11",
+          "sdkName": "completedQty",
+          "definition": {
+            "name": "Completed Qty",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fcYZ89XKhtx",
+          "sdkName": "rejectedQty",
+          "definition": {
+            "name": "Rejected Qty",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fhoMPkAMiAa",
+          "sdkName": "reworkQty",
+          "definition": {
+            "name": "Rework Qty",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "ftouSYjKH86",
+          "sdkName": "wasteQty",
+          "definition": {
+            "name": "Waste Qty",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "f8fNByZ7ce7",
+          "sdkName": "materialCost",
+          "definition": {
+            "name": "Material Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fc5sUdC64G5",
+          "sdkName": "laborCost",
+          "definition": {
+            "name": "Labor Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "frvJWsvwqDi",
+          "sdkName": "overheadCost",
+          "definition": {
+            "name": "Overhead Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fwgcLaSBpUU",
+          "sdkName": "directExpenses",
+          "definition": {
+            "name": "Direct Expenses",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fvfJRvLKXQk",
+          "sdkName": "indirectExpenses",
+          "definition": {
+            "name": "Indirect Expenses",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "faTVYKQEibU",
+          "sdkName": "totalCost",
+          "definition": {
+            "name": "Total Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "frvauiR3xZZ",
+          "sdkName": "unitCost",
+          "definition": {
+            "name": "Unit Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fb1NePKxrDV",
+          "sdkName": "materialsIssued",
+          "definition": {
+            "name": "Materials Issued",
+            "type": "checkbox",
+            "template": {}
+          }
+        },
+        {
+          "id": "ffXGn9nRd54",
+          "sdkName": "qualityNotes",
+          "definition": {
+            "name": "Quality Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fnKCQyiLqb3",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fpb9DM5EiRq",
+          "sdkName": "stageLogs",
+          "definition": {
+            "name": "Stage Logs",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tuLUqCsaqKk",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "ffnbHEWYYPK"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t4BAXLoxNr5",
+      "sdkName": "productionStages",
+      "name": "Production Stages",
+      "primaryFieldId": "fiWitCovZc4",
+      "fields": [
+        {
+          "id": "fiWitCovZc4",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f8e5xWpxJYq",
+          "sdkName": "sortOrder",
+          "definition": {
+            "name": "Sort Order",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tuLUqCsaqKk",
+      "sdkName": "stageLogs",
+      "name": "Stage Logs",
+      "primaryFieldId": "fk5VU4AFPUN",
+      "fields": [
+        {
+          "id": "fk5VU4AFPUN",
+          "sdkName": "stageName",
+          "definition": {
+            "name": "Stage Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "ffnbHEWYYPK",
+          "sdkName": "order",
+          "definition": {
+            "name": "Order",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tvGvGgMZGVf",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fpb9DM5EiRq"
+            }
+          }
+        },
+        {
+          "id": "f1hJax6uaHF",
+          "sdkName": "qtyDone",
+          "definition": {
+            "name": "Qty Done",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fbypDjfxzAB",
+          "sdkName": "qtyWaste",
+          "definition": {
+            "name": "Qty Waste",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 1
+            }
+          }
+        },
+        {
+          "id": "fwi8DS7Y9KR",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fsKgRhHK5NM",
+          "sdkName": "loggedBy",
+          "definition": {
+            "name": "Logged By",
+            "type": "created_by",
+            "template": {}
+          }
+        },
+        {
+          "id": "f63wGsXzUpX",
+          "sdkName": "loggedAt",
+          "definition": {
+            "name": "Logged At",
+            "type": "created_at",
+            "template": {
+              "timezone": "",
+              "dateFormat": "local",
+              "timeFormat": "12h",
+              "displayTimeZone": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tnJDt9MZ1z3",
+      "sdkName": "stockMovements",
+      "name": "Stock Movements",
+      "primaryFieldId": "fmkavHTsZzP",
+      "fields": [
+        {
+          "id": "fmkavHTsZzP",
+          "sdkName": "reference",
+          "definition": {
+            "name": "Reference",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "frZMFZBakos",
+          "sdkName": "movementDate",
+          "definition": {
+            "name": "Movement Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "f311h7nqAN6",
+          "sdkName": "item",
+          "definition": {
+            "name": "Item",
+            "type": "linked_record",
+            "template": {
+              "tableId": "toyjNSQwqpM",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fsGh29JrWwi"
+            }
+          }
+        },
+        {
+          "id": "ft8rK9J9QzU",
+          "sdkName": "warehouse",
+          "definition": {
+            "name": "Warehouse",
+            "type": "linked_record",
+            "template": {
+              "tableId": "twEtHWSuqLR",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fmWYjHQhJRA"
+            }
+          }
+        },
+        {
+          "id": "fvvwA7QSneF",
+          "sdkName": "movementType",
+          "definition": {
+            "name": "Movement Type",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "foqDxWWNAU7",
+          "sdkName": "qtyIn",
+          "definition": {
+            "name": "Qty In",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 3
+            }
+          }
+        },
+        {
+          "id": "f87cMECtRyH",
+          "sdkName": "qtyOut",
+          "definition": {
+            "name": "Qty Out",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 3
+            }
+          }
+        },
+        {
+          "id": "fa3KdgDSHYa",
+          "sdkName": "unitCost",
+          "definition": {
+            "name": "Unit Cost",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fmaqWeGSLLv",
+          "sdkName": "sourceId",
+          "definition": {
+            "name": "Source Id",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "ff6DG1NPnXn",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fjLmadWBTHa",
+          "sdkName": "idempotencyKey",
+          "definition": {
+            "name": "Idempotency Key",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fqiwss6WeM8",
+          "sdkName": "createdBy",
+          "definition": {
+            "name": "Created By",
+            "type": "created_by",
+            "template": {}
+          }
+        },
+        {
+          "id": "ffVBkoWvRDt",
+          "sdkName": "createdAt",
+          "definition": {
+            "name": "Created At",
+            "type": "created_at",
+            "template": {
+              "timezone": "",
+              "dateFormat": "local",
+              "timeFormat": "12h",
+              "displayTimeZone": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t83xpPeRsv3",
+      "sdkName": "employees",
+      "name": "Employees",
+      "primaryFieldId": "fdoXTbVZU2m",
+      "fields": [
+        {
+          "id": "fdoXTbVZU2m",
+          "sdkName": "name",
+          "definition": {
+            "name": "Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f2XuvuR9ss4",
+          "sdkName": "jobTitle",
+          "definition": {
+            "name": "Job Title",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f8gCPkofsFB",
+          "sdkName": "department",
+          "definition": {
+            "name": "Department",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fuoStEHDVFc",
+          "sdkName": "phone",
+          "definition": {
+            "name": "Phone",
+            "type": "phone_number",
+            "template": {}
+          }
+        },
+        {
+          "id": "fuLt6zaR83N",
+          "sdkName": "baseSalary",
+          "definition": {
+            "name": "Base Salary",
+            "type": "currency",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2,
+              "currencySymbol": "EGP"
+            }
+          }
+        },
+        {
+          "id": "fdC5P3epTMn",
+          "sdkName": "hireDate",
+          "definition": {
+            "name": "Hire Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fmBm2XJM89s",
+          "sdkName": "active",
+          "definition": {
+            "name": "Active",
+            "type": "checkbox",
+            "template": {
+              "defaultValue": true
+            }
+          }
+        },
+        {
+          "id": "fceRWSxfTZC",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fq9oC3PdtRa",
+          "sdkName": "transactions",
+          "definition": {
+            "name": "Transactions",
+            "type": "linked_record",
+            "template": {
+              "tableId": "teBrdim9uL8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fapBo9sWG2y"
+            }
+          }
+        },
+        {
+          "id": "fiXbwrDpTXg",
+          "sdkName": "attendance",
+          "definition": {
+            "name": "Attendance",
+            "type": "linked_record",
+            "template": {
+              "tableId": "twAQiJAVr3S",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fo43WPyUKaP"
+            }
+          }
+        },
+        {
+          "id": "fpE2pXap2Vu",
+          "sdkName": "leaves",
+          "definition": {
+            "name": "Leaves",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t2uLjoV7sF8",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "fk3GUnzcaEL"
+            }
+          }
+        },
+        {
+          "id": "fxv133KMKn1",
+          "sdkName": "employeeAdjustments",
+          "definition": {
+            "name": "Employee Adjustments",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tsxRjKrNu6D",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f8JwhiDMV99"
+            }
+          }
+        },
+        {
+          "id": "fjWkzP9mkCi",
+          "sdkName": "payslips",
+          "definition": {
+            "name": "Payslips",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t7VfAdxEQaD",
+              "isInverse": true,
+              "allowMultiple": true,
+              "inverseFieldId": "f4Ytcup1n4j"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "teBrdim9uL8",
+      "sdkName": "transactions",
+      "name": "Transactions",
+      "primaryFieldId": "fgH8xDfUR83",
+      "fields": [
+        {
+          "id": "fgH8xDfUR83",
+          "sdkName": "reference",
+          "definition": {
+            "name": "Reference",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvEdWUZPvbu",
+          "sdkName": "txDate",
+          "definition": {
+            "name": "Tx Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "f5wrGce7aDp",
+          "sdkName": "direction",
+          "definition": {
+            "name": "Direction",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "464r",
+                  "label": "in",
+                  "color": "purple"
+                },
+                {
+                  "value": "n6ju",
+                  "label": "out",
+                  "color": "orange"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fvK8yM1sGLt",
+          "sdkName": "amount",
+          "definition": {
+            "name": "Amount",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fvhMVCtRSjX",
+          "sdkName": "category",
+          "definition": {
+            "name": "Category",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fqcATpk4tgj",
+          "sdkName": "account",
+          "definition": {
+            "name": "Account",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tq8AYWtBnco",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "ffBb25AVLBo"
+            }
+          }
+        },
+        {
+          "id": "f5qbEXZ8DTQ",
+          "sdkName": "customer",
+          "definition": {
+            "name": "Customer",
+            "type": "linked_record",
+            "template": {
+              "tableId": "tfnCJQroMRn",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f39yGrJstcd"
+            }
+          }
+        },
+        {
+          "id": "frDcFFJhfdd",
+          "sdkName": "supplier",
+          "definition": {
+            "name": "Supplier",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t3QrCqjWo9C",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "f5X3e7jVJzF"
+            }
+          }
+        },
+        {
+          "id": "fapBo9sWG2y",
+          "sdkName": "employee",
+          "definition": {
+            "name": "Employee",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t83xpPeRsv3",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fq9oC3PdtRa"
+            }
+          }
+        },
+        {
+          "id": "fuKwwFxtRFa",
+          "sdkName": "document",
+          "definition": {
+            "name": "Document",
+            "type": "linked_record",
+            "template": {
+              "tableId": "thLVnLZ3cLy",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fd2N1yDdJ6x"
+            }
+          }
+        },
+        {
+          "id": "fiyM5Fjo2tS",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f1n9bmyGcz3",
+          "sdkName": "idempotencyKey",
+          "definition": {
+            "name": "Idempotency Key",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fshZPe8SPXM",
+          "sdkName": "createdBy",
+          "definition": {
+            "name": "Created By",
+            "type": "created_by",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvWNZVxur4L",
+          "sdkName": "createdAt",
+          "definition": {
+            "name": "Created At",
+            "type": "created_at",
+            "template": {
+              "timezone": "",
+              "dateFormat": "local",
+              "timeFormat": "12h",
+              "displayTimeZone": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "twAQiJAVr3S",
+      "sdkName": "attendance",
+      "name": "Attendance",
+      "primaryFieldId": "fbMxKziWKpj",
+      "fields": [
+        {
+          "id": "fbMxKziWKpj",
+          "sdkName": "day",
+          "definition": {
+            "name": "Day",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fo43WPyUKaP",
+          "sdkName": "employee",
+          "definition": {
+            "name": "Employee",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t83xpPeRsv3",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fiXbwrDpTXg"
+            }
+          }
+        },
+        {
+          "id": "ftDSR221wem",
+          "sdkName": "status",
+          "definition": {
+            "name": "Status",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "dthn",
+                  "label": "present",
+                  "color": "purple"
+                },
+                {
+                  "value": "nxro",
+                  "label": "absent",
+                  "color": "orange"
+                },
+                {
+                  "value": "oRVy",
+                  "label": "late",
+                  "color": "blue"
+                },
+                {
+                  "value": "bHMM",
+                  "label": "leave",
+                  "color": "gray"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fddDftXxsms",
+          "sdkName": "checkIn",
+          "definition": {
+            "name": "Check In",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f9U9fk1RZX8",
+          "sdkName": "checkOut",
+          "definition": {
+            "name": "Check Out",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f6RUd586tzD",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "single_line_text",
+            "template": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "t2uLjoV7sF8",
+      "sdkName": "leaves",
+      "name": "Leaves",
+      "primaryFieldId": "fbvNDNqgNo9",
+      "fields": [
+        {
+          "id": "fbvNDNqgNo9",
+          "sdkName": "leaveType",
+          "definition": {
+            "name": "Leave Type",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fk3GUnzcaEL",
+          "sdkName": "employee",
+          "definition": {
+            "name": "Employee",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t83xpPeRsv3",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fpE2pXap2Vu"
+            }
+          }
+        },
+        {
+          "id": "fhTtigNrDA3",
+          "sdkName": "fromDate",
+          "definition": {
+            "name": "From Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "ff5brz5iR76",
+          "sdkName": "toDate",
+          "definition": {
+            "name": "To Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        },
+        {
+          "id": "fxnZjAiGY8c",
+          "sdkName": "status",
+          "definition": {
+            "name": "Status",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "45qf",
+                  "label": "pending",
+                  "color": "purple"
+                },
+                {
+                  "value": "kE1P",
+                  "label": "approved",
+                  "color": "orange"
+                },
+                {
+                  "value": "pUHp",
+                  "label": "rejected",
+                  "color": "blue"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fvX42p77fHv",
+          "sdkName": "notes",
+          "definition": {
+            "name": "Notes",
+            "type": "long_text",
+            "template": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "tsxRjKrNu6D",
+      "sdkName": "employeeAdjustments",
+      "name": "Employee Adjustments",
+      "primaryFieldId": "f6JDFVNsTFV",
+      "fields": [
+        {
+          "id": "f6JDFVNsTFV",
+          "sdkName": "description",
+          "definition": {
+            "name": "Description",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f8JwhiDMV99",
+          "sdkName": "employee",
+          "definition": {
+            "name": "Employee",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t83xpPeRsv3",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fxv133KMKn1"
+            }
+          }
+        },
+        {
+          "id": "f1i1JKo6ECN",
+          "sdkName": "adjustmentType",
+          "definition": {
+            "name": "Adjustment Type",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "oq1T",
+                  "label": "bonus",
+                  "color": "purple"
+                },
+                {
+                  "value": "vq9n",
+                  "label": "deduction",
+                  "color": "orange"
+                },
+                {
+                  "value": "hf7P",
+                  "label": "advance",
+                  "color": "blue"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fr6Xx4XnNJH",
+          "sdkName": "amount",
+          "definition": {
+            "name": "Amount",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "findT6K8Rsh",
+          "sdkName": "month",
+          "definition": {
+            "name": "Month",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fmYv3RdGX6P",
+          "sdkName": "adjDate",
+          "definition": {
+            "name": "Adj Date",
+            "type": "date",
+            "template": {
+              "dateFormat": "local"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t7VfAdxEQaD",
+      "sdkName": "payslips",
+      "name": "Payslips",
+      "primaryFieldId": "fdw5jVKAWCG",
+      "fields": [
+        {
+          "id": "fdw5jVKAWCG",
+          "sdkName": "month",
+          "definition": {
+            "name": "Month",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f4Ytcup1n4j",
+          "sdkName": "employee",
+          "definition": {
+            "name": "Employee",
+            "type": "linked_record",
+            "template": {
+              "tableId": "t83xpPeRsv3",
+              "isInverse": false,
+              "allowMultiple": true,
+              "inverseFieldId": "fjWkzP9mkCi"
+            }
+          }
+        },
+        {
+          "id": "fd6Ky9zksgv",
+          "sdkName": "base",
+          "definition": {
+            "name": "Base",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "ffSLjzhCEzq",
+          "sdkName": "bonuses",
+          "definition": {
+            "name": "Bonuses",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fedx3WzmCDT",
+          "sdkName": "deductions",
+          "definition": {
+            "name": "Deductions",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fsYXdG1KgXe",
+          "sdkName": "advances",
+          "definition": {
+            "name": "Advances",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "fqYZBbqCafd",
+          "sdkName": "net",
+          "definition": {
+            "name": "Net",
+            "type": "number",
+            "template": {
+              "numberFormat": "local",
+              "decimalPlaces": 2
+            }
+          }
+        },
+        {
+          "id": "f2NBSMbfcBE",
+          "sdkName": "paid",
+          "definition": {
+            "name": "Paid",
+            "type": "checkbox",
+            "template": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "ttcECLbwmkd",
+      "sdkName": "appUsers",
+      "name": "App Users",
+      "primaryFieldId": "fwZaTwsFAkM",
+      "fields": [
+        {
+          "id": "fwZaTwsFAkM",
+          "sdkName": "displayName",
+          "definition": {
+            "name": "Display Name",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f4Q8XUBpLgy",
+          "sdkName": "user",
+          "definition": {
+            "name": "User",
+            "type": "user",
+            "template": {
+              "internalOnly": false,
+              "allowMultiple": false,
+              "deleteRowWhenUserDeleted": true
+            }
+          }
+        },
+        {
+          "id": "f1hHeEwfF9Z",
+          "sdkName": "role",
+          "definition": {
+            "name": "Role",
+            "type": "single_select",
+            "template": {
+              "options": [
+                {
+                  "value": "oTvj",
+                  "label": "admin",
+                  "color": "purple"
+                },
+                {
+                  "value": "aNvJ",
+                  "label": "employee",
+                  "color": "orange"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "fercu4Y9aoG",
+          "sdkName": "permissions",
+          "definition": {
+            "name": "Permissions",
+            "type": "multiple_select",
+            "template": {
+              "options": [
+                {
+                  "value": "chmm",
+                  "label": "products",
+                  "color": "purple"
+                },
+                {
+                  "value": "aDSb",
+                  "label": "inventory",
+                  "color": "orange"
+                },
+                {
+                  "value": "ocZB",
+                  "label": "purchases",
+                  "color": "blue"
+                },
+                {
+                  "value": "kuWj",
+                  "label": "sales",
+                  "color": "gray"
+                },
+                {
+                  "value": "iwP6",
+                  "label": "production",
+                  "color": "red"
+                },
+                {
+                  "value": "4hNG",
+                  "label": "hr",
+                  "color": "yellow"
+                },
+                {
+                  "value": "fdYE",
+                  "label": "finance",
+                  "color": "green"
+                },
+                {
+                  "value": "brNq",
+                  "label": "reports",
+                  "color": "pink"
+                }
+              ],
+              "disableColors": false
+            }
+          }
+        },
+        {
+          "id": "f3wLyBAH867",
+          "sdkName": "active",
+          "definition": {
+            "name": "Active",
+            "type": "checkbox",
+            "template": {
+              "defaultValue": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "t7PLdac5FSw",
+      "sdkName": "notifications",
+      "name": "Notifications",
+      "primaryFieldId": "fuQPbwm5gti",
+      "fields": [
+        {
+          "id": "fuQPbwm5gti",
+          "sdkName": "title",
+          "definition": {
+            "name": "Title",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f2NZ3BjJbkf",
+          "sdkName": "body",
+          "definition": {
+            "name": "Body",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f7Zz3McQHDn",
+          "sdkName": "kind",
+          "definition": {
+            "name": "Kind",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f2us859B6gL",
+          "sdkName": "link",
+          "definition": {
+            "name": "Link",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fd94K5uRV19",
+          "sdkName": "isRead",
+          "definition": {
+            "name": "Is Read",
+            "type": "checkbox",
+            "template": {}
+          }
+        },
+        {
+          "id": "for81Jb68H5",
+          "sdkName": "createdAt",
+          "definition": {
+            "name": "Created At",
+            "type": "created_at",
+            "template": {
+              "timezone": "",
+              "dateFormat": "local",
+              "timeFormat": "12h",
+              "displayTimeZone": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "twAykjWkie7",
+      "sdkName": "auditLogs",
+      "name": "Audit Logs",
+      "primaryFieldId": "f2fDam3RhtL",
+      "fields": [
+        {
+          "id": "f2fDam3RhtL",
+          "sdkName": "action",
+          "definition": {
+            "name": "Action",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fsMXWNP26rH",
+          "sdkName": "module",
+          "definition": {
+            "name": "Module",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f8fDunBPcUx",
+          "sdkName": "recordId",
+          "definition": {
+            "name": "Record Id",
+            "type": "single_line_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fb4QwFwe574",
+          "sdkName": "description",
+          "definition": {
+            "name": "Description",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvWgan6Lphy",
+          "sdkName": "beforeData",
+          "definition": {
+            "name": "Before Data",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "f1QjF1X1hXM",
+          "sdkName": "afterData",
+          "definition": {
+            "name": "After Data",
+            "type": "long_text",
+            "template": {}
+          }
+        },
+        {
+          "id": "fvQFdAEeJdK",
+          "sdkName": "actor",
+          "definition": {
+            "name": "Actor",
+            "type": "user",
+            "template": {
+              "internalOnly": false,
+              "allowMultiple": false,
+              "deleteRowWhenUserDeleted": false
+            }
+          }
+        },
+        {
+          "id": "f3kYwwXhRjx",
+          "sdkName": "createdAt",
+          "definition": {
+            "name": "Created At",
+            "type": "created_at",
+            "template": {
+              "timezone": "",
+              "dateFormat": "local",
+              "timeFormat": "12h",
+              "displayTimeZone": false
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
