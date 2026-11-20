@@ -11,6 +11,7 @@ import { Checkbox } from '@project/components/ui/checkbox';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@project/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@project/components/ui/select';
 import DataTable from '../components/DataTable';
+import BackupCard from '../components/BackupCard';
 import { PageHeader } from '../components/ui-kit';
 import { useInvalidate } from '../lib/data';
 import { errMsg, PERM_LABELS } from '../lib/format';
@@ -66,6 +67,7 @@ export default function UsersPage() {
     <div>
       <PageHeader title="المستخدمون والصلاحيات" subtitle="المسؤولون متساوون في الصلاحيات تماماً. حدد لكل موظف الأقسام التي يمكنه الوصول إليها."
         actions={<Button onClick={() => { setAcc(null); setOpen(true); }}><UserPlus className="ml-1 h-4 w-4" />إضافة حساب</Button>} />
+      <BackupCard />
       <div className="mb-4 rounded-xl border bg-accent/50 p-3 text-sm text-accent-foreground">
         لإضافة شخص جديد: ادعُه أولاً للتطبيق من صفحة المستخدمين في Zite، ثم اختره هنا وحدد دوره وصلاحياته. الصلاحيات تُطبق على الخادم في كل عملية.
       </div>

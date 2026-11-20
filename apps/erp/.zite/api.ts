@@ -6,6 +6,7 @@ import type { default as _ConvertDocumentEp } from '../src/api/convertDocument';
 import type { default as _DashboardEp } from '../src/api/dashboard';
 import type { default as _DeleteRecordEp } from '../src/api/deleteRecord';
 import type { default as _DocumentActionEp } from '../src/api/documentAction';
+import type { default as _ExportBackupEp } from '../src/api/exportBackup';
 import type { default as _FinanceOverviewEp } from '../src/api/financeOverview';
 import type { default as _GeneratePayslipsEp } from '../src/api/generatePayslips';
 import type { default as _GetDocumentEp } from '../src/api/getDocument';
@@ -50,6 +51,11 @@ type _DocumentActionCfg = typeof _DocumentActionEp;
 export type DocumentActionInputType = NonNullable<_DocumentActionCfg['inputSchema']> extends { _input: infer I } ? I : Parameters<_DocumentActionCfg['execute']>[0]['input'];
 export type DocumentActionOutputType = Awaited<ReturnType<_DocumentActionCfg['execute']>>;
 export const documentAction = createCaller<DocumentActionInputType, DocumentActionOutputType>('documentAction');
+
+type _ExportBackupCfg = typeof _ExportBackupEp;
+export type ExportBackupInputType = NonNullable<_ExportBackupCfg['inputSchema']> extends { _input: infer I } ? I : Parameters<_ExportBackupCfg['execute']>[0]['input'];
+export type ExportBackupOutputType = Awaited<ReturnType<_ExportBackupCfg['execute']>>;
+export const exportBackup = createCaller<ExportBackupInputType, ExportBackupOutputType>('exportBackup');
 
 type _FinanceOverviewCfg = typeof _FinanceOverviewEp;
 export type FinanceOverviewInputType = NonNullable<_FinanceOverviewCfg['inputSchema']> extends { _input: infer I } ? I : Parameters<_FinanceOverviewCfg['execute']>[0]['input'];
@@ -177,6 +183,7 @@ export const api = {
   dashboard,
   deleteRecord,
   documentAction,
+  exportBackup,
   financeOverview,
   generatePayslips,
   getDocument,
