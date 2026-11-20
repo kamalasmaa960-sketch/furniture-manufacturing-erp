@@ -18,7 +18,7 @@ export default function AuditPage() {
   return (
     <div>
       <PageHeader title="سجل العمليات والمراجعة" subtitle="سجل للقراءة فقط لكل العمليات — لا يمكن تعديله أو حذفه من النظام" />
-      <DataTable<Log> rows={data?.logs} loading={isLoading} onRowClick={setSel} exportName="سجل العمليات" pageSize={25}
+      <DataTable rows={data?.logs as Log[] | undefined} loading={isLoading} onRowClick={(r: Log) => setSel(r)} exportName="سجل العمليات" pageSize={25}
         toolbar={<><Input type="date" className="w-40" value={from} onChange={(e) => setFrom(e.target.value)} /><Input type="date" className="w-40" value={to} onChange={(e) => setTo(e.target.value)} /></>}
         columns={[
           { key: 'createdAt', label: 'التاريخ والوقت', render: (r) => fmtDateTime(r.createdAt) }, { key: 'actorName', label: 'المستخدم' },
